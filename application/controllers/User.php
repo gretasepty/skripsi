@@ -113,8 +113,8 @@ class User extends CI_Controller {
        if($this->db->affected_rows() > 0){
         echo "<script>alert('Data berhasil dihapus');</script>"; 
     }
-    echo "<script>window.location='".site_url('user')."';</script>"; 
+        echo "<script>window.location='".site_url('user')."';</script>"; 
     }
-
+    
     
 }

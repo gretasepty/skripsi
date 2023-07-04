@@ -20,7 +20,6 @@
           <div class="row">
               <div class="col-md-4 col-md-offset-4">
                   <?php // echo validation_errors();?>
-
                   <form action="" method="post">
                       <div class="form-group <?=form_error('fullname') ? 'has-error' : null?>">
                           <label>Nama Lengkap *</label>

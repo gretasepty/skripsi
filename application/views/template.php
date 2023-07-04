@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="<?=base_url()?>assets//bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?=base_url()?>assets//bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>assets//bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?=base_url()?>assets//bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
@@ -59,13 +60,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?=base_url()?>assets//dist/img/greta_septy.jpeg" class="user-image" alt="User Image">
+              <img src="<?=base_url()?>assets//dist/img/pelanggan.png" class="user-image" alt="User Image">
               <span class="hidden-xs"><?=ucfirst($this->fungsi->user_login()->username)?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header" style="background-color: #FF8E9E;"> 
-                <img src="<?=base_url()?>assets//dist/img/greta_septy.jpeg" class="img-circle" alt="User Image">
+                <img src="<?=base_url()?>assets//dist/img/pelanggan.png" class="img-circle" alt="User Image">
 
                 <p><?=$this->fungsi->user_login()->namaLengkap?>
                   <small><?=$this->fungsi->user_login()->email?></small>
@@ -73,9 +74,17 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
+              <?php if($this->fungsi->user_login()->level == 1) { ?>
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profil</a>
+                  <a href="<?=site_url('myprofile_admin')?>" class="btn btn-default btn-flat">Profil</a>
                 </div>
+              <?php } ?>
+              <?php if($this->fungsi->user_login()->level == 2) { ?>
+                <div class="pull-left">
+                  <a href="<?=site_url('myprofile_user')?>" class="btn btn-default btn-flat">Profil</a>
+                </div>
+              <?php } ?>
+
                 <div class="pull-right">
                   <a href="<?=site_url('auth/logout')?>" class="btn btn-default btn-flat bg-red">Keluar</a>
                 </div>
@@ -96,7 +105,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?=base_url()?>assets//dist/img/greta_septy.jpeg" class="img-circle" alt="User Image">
+          <img src="<?=base_url()?>assets//dist/img/pelanggan.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?=ucfirst($this->fungsi->user_login()->username)?></p>
@@ -119,23 +128,23 @@
           <a href="<?=site_url('user')?>"> <i class="fa fa-user-o"></i> <span>Data Pengguna</span> </a>
         </li>
         <li>
-          <a href="<?=site_url('jenis_kulit')?>"> <i class="fa fa-user-o"></i> <span>Data Jenis Kulit</span> </a>
+          <a href="<?=site_url('jenis_kulit')?>"> <i class="fa fa-list-alt"></i> <span>Data Jenis Kulit</span> </a>
         </li>
         <li>
-          <a href="<?=site_url('asal_brand')?>"> <i class="fa fa-user-o"></i> <span>Data Asal Brand</span> </a>
+          <a href="<?=site_url('asal_brand')?>"> <i class="fa fa-building-o"></i> <span>Data Asal Brand</span> </a>
         </li>
         <?php } ?>
 
         <!--NAVIGATION USER-->
         <?php if($this->fungsi->user_login()->level == 2) { ?>
         <li>
-          <a href=""> <i class="fa fa-dashboard"></i> <span>Halaman Utama</span> </a>
+          <a href="<?=site_url('dashboard_user')?>"> <i class="fa fa-dashboard"></i> <span>Halaman Utama</span> </a>
         </li>
         <li>
-          <a href=""> <i class="fa fa-history"></i> <span>Data Sunscreen</span> </a>
+          <a href="<?=site_url('sunscreen_user')?>"> <i class="fa fa-folder-open-o"></i> <span>Data Sunscreen</span> </a>
         </li>
         <li>
-          <a href=""> <i class="fa fa-list-alt"></i> <span>Kriteria</span> </a>
+          <a href="<?=site_url('kriteria')?>"> <i class="fa fa-list-alt"></i> <span>Kriteria</span> </a>
         </li>
         <li>
           <a href=""> <i class="fa fa-calculator"></i> <span>Perhitungan</span> </a>
@@ -162,10 +171,9 @@
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.13
+      <b>Version</b> 1.1.1
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="">SPK Sunscreen</a>.</strong> All rights
-    reserved.
+    <strong> SPK Sunscreen  <a href=""></a></strong> 
   </footer>
 
   <!-- Control Sidebar -->
@@ -189,9 +197,13 @@
 <script src="<?=base_url()?>assets//dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url()?>assets//dist/js/demo.js"></script>
+
+<script src="<?=base_url()?>assets//bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?=base_url()?>assets//bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
 <script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
+  $(document).ready(function() {
+    $('#table1').DataTable()
   })
 </script>
 </body>

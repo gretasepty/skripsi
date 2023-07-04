@@ -31,4 +31,9 @@ class Asal_m extends CI_Model {
         $this->db->delete('asal_brand');
     }
 
+    public function getJumlahDataAsal() {
+        $this->db->from('asal_brand');
+        return $this->db->count_all_results();
+    }
+
 }

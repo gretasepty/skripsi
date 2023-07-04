@@ -51,5 +51,10 @@ class User_m extends CI_Model {
         $this->db->delete('user');
     }
 
+    public function getJumlahDataUser() {
+        $this->db->from('user');
+        return $this->db->count_all_results();
+    }
+
     
 }

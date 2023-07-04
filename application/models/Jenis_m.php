@@ -31,4 +31,9 @@ class Jenis_m extends CI_Model {
         $this->db->delete('jenis_kulit');
     }
 
+    public function getJumlahDataJenis() {
+        $this->db->from('jenis_kulit');
+        return $this->db->count_all_results();
+    }
+
 }

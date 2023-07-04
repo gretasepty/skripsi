@@ -45,7 +45,7 @@
       </div>
     </form>
     <br>
-    <a href="<?=site_url('register/regis')?>" class="text-center">Register a new membership</a>
+    <a href="<?=site_url('auth/register')?>" class="text-center">Register a new membership</a>
   </div>
 </div>
 

@@ -31,43 +31,40 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="<?=base_url()?>assets/index2.html"><b>SPK </b>Sunscreen</a>
+    <a href="<?=base_url()?>assets/index2.html"><b>Admin</b>LTE</a>
   </div>
 
   <div class="register-box-body">
-    <!-- <p class="login-box-msg">Register untuk pengguna baru</p> -->
-    
+
     <form action="" method="post">
-      <div class="form-group <?=form_error('fullname') ? 'has-error' : null?> ">
-        <input type="text" name="fullname" class="form-control" placeholder="Nama lengkap">
+      <div class="form-group <?=form_error('fullname') ? 'has-error' : null?>">
+        <input type="text" class="form-control" id="fullname" name="fullname" 
+        value="<?=set_value('fullname')?>" placeholder="Nama Lengkap">
         <?=form_error('fullname')?>
       </div>
-      <div class="form-group <?=form_error('username') ? 'has-error' : null?> ">
-        <input type="text" name="username" class="form-control" placeholder="Username">
+      <div class="form-group <?=form_error('username') ? 'has-error' : null?>">
+        <input type="text" class="form-control" id="username" name="username" 
+        value="<?=set_value('username')?>" placeholder="Username">
         <?=form_error('username')?>
       </div>
       <div class="form-group <?=form_error('password') ? 'has-error' : null?>">
-        <input type="password" name="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" id="password" name="password" 
+        placeholder="Password">
         <?=form_error('password')?>
       </div>
       <div class="form-group <?=form_error('passconf') ? 'has-error' : null?>">
-        <input type="password" name="passconf" class="form-control" placeholder="Konfirmasi password" >
+        <input type="password" class="form-control" id="passconf" name="passconf" 
+        placeholder="Retype password">
         <?=form_error('passconf')?>
       </div>
       <div class="form-group <?=form_error('email') ? 'has-error' : null?>">
-        <input type="email" name="email" class="form-control" placeholder="Email">
+        <input type="email" class="form-control" id="email" name="email" 
+        value="<?=set_value('email')?>" placeholder="Email">
         <?=form_error('email')?>
       </div>
       <div class="form-group">
-        <select name="gender" class="form-control">
-              <option value="">- Pilih -</option>
-              <option value="Laki-laki" <?=set_value('gender') == 'Laki-laki' ? "selected" : null?>>Laki-laki</option>
-              <option value="Perempuan" <?=set_value('gender') == 'Perempuan' ? "selected" : null?>>Perempuan</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-success btn-flat">Register</button>
-      </div>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+        </div>
     </form>
 
     <a href="<?=site_url('auth/login')?>" class="text-center">Saya sudah memiliki akun</a>
@@ -76,6 +73,20 @@
 </div>
 <!-- /.register-box -->
 
-
+<!-- jQuery 3 -->
+<script src="<?=base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?=base_url()?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="<?=base_url()?>assets/plugins/iCheck/icheck.min.js"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' /* optional */
+    });
+  });
+</script>
 </body>
 </html>

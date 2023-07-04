@@ -16,10 +16,18 @@ function check_not_login(){
     }
 }
 
-function check_admin(){
+function check_admin(){ //Memberikan hak akses untuk user
     $ci =& get_instance();
     $ci->load->library('fungsi');
     if ($ci->fungsi->user_login()->level != 1) {
+        redirect('dashboard_user');
+    }
+}
+
+function check_user(){ //Memeberikan hak akses untuk admin
+    $ci =& get_instance();
+    $ci->load->library('fungsi');
+    if ($ci->fungsi->user_login()->level != 2) {
         redirect('dashboard');
     }
 }

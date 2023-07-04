@@ -11,7 +11,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Tambah Data Sunscreen</h3>
+            <h3 class="box-title"><?=ucfirst($page)?> Sunscreen</h3>
             <div class="pull-right">
                 <a href="<?=site_url('sunscreen')?>" class="btn btn-warning btn-flat">Kembali</a>
             </div>
@@ -20,55 +20,68 @@
           <div class="row">
               <div class="col-md-4 col-md-offset-4">
                   <?php // echo validation_errors();?>
-                  <form action="" method="post">
-                      <div class="form-group <?=form_error('nameProduct') ? 'has-error' : null?>">
+                  <form action="<?=site_url('sunscreen/process')?>" method="post">
+                      <div class="form-group">
                           <label>Nama Produk *</label>
-                          <input type="text" name="nameProduct" value="<?=set_value('nameProduct')?>" class="form-control">
-                          <?=form_error('nameProduct')?>
+                          <input type="hidden" name="id" value="<?=$row->idSunscreen?>">
+                          <input type="text" name="nameProduct" value="<?=$row->namaProduk?>" class="form-control" required>
                       </div>
-                      <div class="form-group <?=form_error('price') ? 'has-error' : null?>">
+                      <div class="form-group">
                           <label>Harga Produk *</label>
-                          <input type="text" name="price" value="<?=set_value('price')?>" class="form-control">
-                          <?=form_error('price')?>
+                          <input type="number" name="price" value="<?=$row->harga?>" class="form-control" required>
                       </div>
-                      <div class="form-group <?=form_error('spf') ? 'has-error' : null?>">
+                      <div class="form-group">
                           <label>SPF *</label>
-                          <input type="text" name="spf" value="<?=set_value('spf')?>" class="form-control">
-                          <?=form_error('spf')?>
+                          <input type="number" name="spf" value="<?=$row->spf?>" class="form-control" required>
                       </div>
-                      <div class="form-group <?=form_error('rating') ? 'has-error' : null?>">
+                      <div class="form-group">
+                          <label>Proteksi UVA *</label>
+                          <input type="text" name="protectionGrade" value="<?=$row->protectionGrade?>" class="form-control" required>
+                      </div>
+                      <div class="form-group">
                           <label>Rating Produk *</label>
-                          <input type="text" name="rating" value="<?=set_value('rating')?>" class="form-control">
-                          <?=form_error('rating')?>
+                          <input type="number" name="rating" value="<?=$row->ratingProduk?>" class="form-control" step="0.01"  required>
+                      </div>
+                      <div class="form-group">
+                          <label>Berat Produk *</label>
+                          <input type="number" name="netto" value="<?=$row->berat?>" class="form-control" required>
+                      </div>
+                      <div class="form-group">
+                          <label>Persentase Users Recommend *</label>
+                          <input type="number" name="recommend" value="<?=$row->usersRecommend?>" class="form-control" required>
+                      </div>
+                      <div class="form-group">
+                          <label>Persentase Users Repurchase *</label>
+                          <input type="number" name="repurchase" value="<?=$row->usersRepurchase?>" class="form-control" required>
                       </div>
                       <div class="form-group">
                           <label>Cocok Untuk Jenis Kulit *</label>
-                          <select name="jenisKulit" class="form-control">
+                          <select name="jenis" class="form-control">
                                 <option value="">- Pilih -</option>
-                                <option value="Laki-laki" <?=set_value('jenisKulit') == 'Laki-laki' ? "selected" : null?>>Laki-laki</option>
-                                <option value="Perempuan" <?=set_value('jenisKulit') == 'Perempuan' ? "selected" : null?>>Perempuan</option>
+                                <?php foreach($jenis->result() as $key => $data) { ?>
+                                <option value="<?=$data->idJenisKulit?>" <?=$data->idJenisKulit == $row->idJenisKulit? "selected" : null?>><?=$data->jenisKulit?></option>
+                                <?php } ?>
                           </select>
                       </div>
                       <div class="form-group">
                           <label>Asal Brand *</label>
-                          <select name="asalBrand" class="form-control">
+                          <select name="asal" class="form-control">
                                 <option value="">- Pilih -</option>
-                                <option value="Laki-laki" <?=set_value('asalBrand') == 'Laki-laki' ? "selected" : null?>>Laki-laki</option>
-                                <option value="Perempuan" <?=set_value('asalBrand') == 'Perempuan' ? "selected" : null?>>Perempuan</option>
+                                <?php foreach($asal->result() as $key => $data) { ?>
+                                <option value="<?=$data->idAsalBrand?>" <?=$data->idAsalBrand == $row->idAsalBrand? "selected" : null?>><?=$data->asalBrand?></option>
+                                <?php } ?>
                           </select>
                       </div>
-                      <div class="form-group <?=form_error('link') ? 'has-error' : null?>">
-                          <label>Link Gambar *</label>
-                          <input type="text" name="link" value="<?=set_value('link')?>" class="form-control">
-                          <?=form_error('link')?>
-                      </div>
-                      <div class="form-group <?=form_error('nameCompany') ? 'has-error' : null?>">
-                          <label>Nama Perusahaan *</label>
-                          <input type="text" name="nameCompany" value="<?=set_value('nameCompany')?>" class="form-control">
-                          <?=form_error('nameCompany')?>
+                      <div class="form-group">
+                          <label>Nama Perusahaan</label>
+                          <input type="text" name="nameCompany" value="<?=$row->namaPerusahaan?>" class="form-control">
                       </div>
                       <div class="form-group">
-                          <button type="submit" class="btn btn-success btn-flat">Simpan</button>
+                          <label>Link Gambar</label>
+                          <input type="text" name="link" value="<?=$row->gambar?>" class="form-control">
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" name="<?=$page?>" class="btn btn-success btn-flat">Simpan</button>
                           <button type="reset" class="btn btn-danger btn-flat">Hapus</button>
                       </div>
                   </form>
